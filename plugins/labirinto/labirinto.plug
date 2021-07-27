@@ -1,0 +1,9 @@
+[Core]
+Name = Labirinto
+Module = labirinto
+
+[Documentation]
+Description = Jogo de labirinto baseado em texto
+
+[Python]
+Version = 3

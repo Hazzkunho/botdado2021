@@ -1,16 +1,43 @@
 import logging
+from os import environ
+from dotenv import load_dotenv
+load_dotenv()
 
-# This is a minimal configuration to get you started with the Text mode.
-# If you want to connect Errbot to chat services, checkout
-# the options in the more complete config-template.py from here:
-# https://raw.githubusercontent.com/errbotio/errbot/master/errbot/config-template.py
+"""
+Backend: Discord
+"""
+BACKEND = "Discord"
 
-BACKEND = 'Text'  # Errbot will start in text mode (console only mode) and will answer commands from there.
+"""Necessário o arquivo .env no formato:
+TOKENDISCORD=<token>
+onde <token> contém o valor obtido de
+https://discord.com/developers/applications
+"""
+BOT_IDENTITY = {
+    "token": environ.get("TOKENDISCORD")
+}
+BOT_ADMINS = (environ.get("BOT_ADMIN"), )
 
-BOT_DATA_DIR = r'/workspace/botdado2021/data'
-BOT_EXTRA_PLUGIN_DIR = r'/workspace/botdado2021/plugins'
+"""
+Prefixo do bot
+"""
+BOT_PREFIX = "!"
+BOT_PREFIX_OPTIONAL_ON_CHAT = True
 
-BOT_LOG_FILE = r'/workspace/botdado2021/errbot.log'
+"""
+Diretórios do Errbot
+"""
+BOT_DATA_DIR = r"data"
+BOT_EXTRA_PLUGIN_DIR = r"plugins"
+BOT_EXTRA_BACKEND_DIR = r"backends"
+
+"""
+Se os plugins têm dependências, usar ambiente virtual e requirements.txt
+"""
+AUTOINSTALL_DEPS = True
+
+"""
+Log
+"""
+BOT_LOG_FILE = r"errbot.log"
 BOT_LOG_LEVEL = logging.DEBUG
-
-BOT_ADMINS = ('@CHANGE_ME', )  # !! Don't leave that to "@CHANGE_ME" if you connect your errbot to a chat system !!
